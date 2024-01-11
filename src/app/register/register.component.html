@@ -1,0 +1,93 @@
+<main id="main">
+    <div style="display: flex;justify-content: center;">
+        <img src="../../assets/images/tnhb_logo.png" alt="" style="width: 80%;">
+    </div>
+    <h2 style="text-align: center; font-weight: bold; font-size: x-large; margin: 1rem 0;">Vendor Registration</h2>
+
+    <div class="form shadow rounded">
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+            <div class="mb-3">
+                <label for="contractorName" class="form-label">Name of the Contractor</label>
+                <input type="text" class="form-control" id="contractorName" formControlName="contractorName">
+                <div *ngIf="registerForm.get('contractorName')?.invalid && (registerForm.get('contractorName')?.dirty || registerForm.get('contractorName')?.touched)"
+                    class="text-danger">
+                    <small>Please enter a valid contractor name.</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="pan" class="form-label">PAN</label>
+                <div class="inputWithFile">
+                    <input type="text" class="form-control" id="pan" formControlName="pan">
+                    <input type="file" class="form-control">
+                </div>
+                <div *ngIf="registerForm.get('pan')?.invalid && (registerForm.get('pan')?.dirty || registerForm.get('pan')?.touched)"
+                    class="text-danger">
+                    <small>Please enter a valid PAN.</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="tan" class="form-label">TAN</label>
+                <div class="inputWithFile">
+                    <input type="text" class="form-control" id="tan" formControlName="tan">
+                    <input type="file" class="form-control">
+                </div>
+
+                <div *ngIf="registerForm.get('tan')?.invalid && (registerForm.get('tan')?.dirty || registerForm.get('tan')?.touched)"
+                    class="text-danger">
+                    <small>Please enter a valid TAN.</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="gst" class="form-label">GST</label>
+                <div class="inputWithFile">
+                    <input type="text" class="form-control" id="gst" formControlName="gst">
+                    <input type="file" class="form-control">
+                </div>
+
+                <div *ngIf="registerForm.get('gst')?.invalid && (registerForm.get('gst')?.dirty || registerForm.get('gst')?.touched)"
+                    class="text-danger">
+                    <small>Please enter a valid GST.</small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="contactNumber" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber">
+                <div *ngIf="registerForm.get('contactNumber')?.hasError('invalidContactNumber') && (registerForm.get('contactNumber')?.dirty || registerForm.get('contactNumber')?.touched)"
+                    class="text-danger">
+                    Please enter a valid 10-digit number.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+            </div>
+
+            <div class="mb-3">
+                <label for="cnfPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="cnfPassword" formControlName="cnfPassword">
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <span>
+                    <button class="btn" routerLink="/login" style="background-color: #860A35;color: #ffffff;"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg><span class="ms-1">Login</span></button>
+                </span>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</main>

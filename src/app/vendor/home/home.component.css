@@ -1,0 +1,16 @@
+#main {
+    padding: 1rem;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 13rem;
+    height: 13rem;
+    padding: 1rem;
+    background-color: #008170;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}

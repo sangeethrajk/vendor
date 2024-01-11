@@ -1,0 +1,67 @@
+<main id="main">
+    <h3 style="font-weight: bold;font-size: large;">Raise Bill</h3>
+    <form>
+        <div class="row mb-3">
+            <label for="divisionDropdown" class="col-3 col-form-label">Name of the Division</label>
+            <div class="col-9">
+                <select class="form-select" id="divisionDropdown" aria-label="Default select example">
+                    <option selected>Select Division</option>
+                    <option value="1">KK Nagar</option>
+                    <option value="2">Anna Nagar</option>
+                    <option value="3">JJ Nagar</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="workName" class="col-3 col-form-label">Name of the Work</label>
+            <div class="col-9">
+                <input type="text" class="form-control" id="workName">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-3 col-form-label">Agreement Number & Date</label>
+            <div class="col-9">
+                <div class="d-flex">
+                    <input type="text" class="form-control" id="agreementNo">
+                    <input type="date" class="form-control ms-2" id="agreementDate">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="dateOfCommencement" class="col-3 col-form-label">Date of Commencement</label>
+            <div class="col-9">
+                <input type="date" class="form-control" id="dateOfCommencement">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="agreementValue" class="col-3 col-form-label">Agreement value</label>
+            <div class="col-9">
+                <input type="text" class="form-control" id="agreementValue">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="invoiceNo" class="col-3 col-form-label">Invoice Number</label>
+            <div class="col-9">
+                <input type="text" class="form-control" id="invoiceNo">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="billNo" class="col-3 col-form-label">Bill Number</label>
+            <div class="col-9">
+                <input type="text" class="form-control" id="billNo">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-3 col-form-label">Bill Value</label>
+            <div class="col-9">
+                <div class="d-flex">
+                    <input type="text" class="form-control" id="billValue">
+                    <input type="file" class="form-control ms-2" id="billUpload">
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" (click)="openDialog()">Submit</button>
+        </div>
+    </form>
+</main>
