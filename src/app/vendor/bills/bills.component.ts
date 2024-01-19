@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../../service/api.service';
 
 export interface PeriodicElement {
   sno: string;
@@ -17,6 +19,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './bills.component.css'
 })
 export class BillsComponent {
-  displayedColumns: string[] = ['sno', 'projectName', 'projectValue', 'projectLocation', 'action'];
+  displayedColumns: string[] = ['sno', 'projectName', 'projectValue','status' ,'action'];
   dataSource = ELEMENT_DATA;
+  constructor(private apiCall: ApiService, private router: Router) { }
+  ngOnInit(): void {
+    this.getBillList();
+  }
+
+  getBillList() {
+    const payload = {}
+    this.apiCall.apiPostCall(payload, 'getProjectBillsView').subscribe(data => {
+      this.dataSource = data.data;
+    })
+  }
 }

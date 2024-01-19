@@ -7,9 +7,9 @@
     <div class="form shadow rounded">
         <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
             <div class="mb-3">
-                <label for="contractorName" class="form-label">Name of the Contractor</label>
-                <input type="text" class="form-control" id="contractorName" formControlName="contractorName">
-                <div *ngIf="registerForm.get('contractorName')?.invalid && (registerForm.get('contractorName')?.dirty || registerForm.get('contractorName')?.touched)"
+                <label for="nameOfContractor" class="form-label">Name of the Contractor</label>
+                <input type="text" class="form-control" id="nameOfContractor" formControlName="nameOfContractor">
+                <div *ngIf="registerForm.get('nameOfContractor')?.invalid && (registerForm.get('nameOfContractor')?.dirty || registerForm.get('nameOfContractor')?.touched)"
                     class="text-danger">
                     <small>Please enter a valid contractor name.</small>
                 </div>
@@ -65,16 +65,26 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="f['email'].errors && f['email'].errors['required']"   class="text-danger">Email is
+                    required</div>
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" formControlName="password">
+                <div *ngIf="f['password'].errors && f['password'].errors['required']"   class="text-danger">Password is
+                    required</div>
+
             </div>
 
             <div class="mb-3">
-                <label for="cnfPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="cnfPassword" formControlName="cnfPassword">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']"   class="text-danger">Confirm password is
+                    required</div>
+                <div *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['mustMatch']"   class="text-danger">Passwords must
+                    match</div>
+
             </div>
 
             <div class="d-flex justify-content-between">

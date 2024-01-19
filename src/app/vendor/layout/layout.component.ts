@@ -1,5 +1,7 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-layout',
@@ -11,11 +13,13 @@ export class LayoutComponent {
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
+  userDet: any;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private router:Router,public apiCall: ApiService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.userDet=JSON.parse(localStorage.getItem('vendorDet'))
   }
 
   ngOnDestroy(): void {
@@ -23,5 +27,9 @@ export class LayoutComponent {
   }
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login']);
 
+  }
 }

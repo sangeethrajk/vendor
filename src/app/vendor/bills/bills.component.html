@@ -8,34 +8,30 @@
 
                 <ng-container matColumnDef="sno">
                     <th mat-header-cell *matHeaderCellDef> S. No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                    <td mat-cell *matCellDef="let element;let i = index"> {{i + 1}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="projectName">
-                    <th mat-header-cell *matHeaderCellDef> Project Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Bill No </th>
+                    <td mat-cell *matCellDef="let element"> {{element.billNo}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="projectValue">
-                    <th mat-header-cell *matHeaderCellDef> Project Value </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectValue}} </td>
+                    <th mat-header-cell *matHeaderCellDef> Bill Value </th>
+                    <td mat-cell *matCellDef="let element"> {{element.billValue}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="projectLocation">
-                    <th mat-header-cell *matHeaderCellDef> Project Location </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectLocation}} </td>
-                </ng-container>
 
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.verificationStatus}} </td>
+                </ng-container>
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element">
-                        <button class="btn" style="color: #49108B;" routerLink="/vendor/raise-bill">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0" />
-                            </svg>
-                        </button>
+
+                        <a *ngIf="element.verificationStatus !== 'Pending'" [routerLink]="['/vendor/raise-bill', element.billUniqueId]"> <mat-icon
+                                style="font-size: 18px;cursor:pointer" matTooltip="Edit">edit</mat-icon></a>
                     </td>
                 </ng-container>
 

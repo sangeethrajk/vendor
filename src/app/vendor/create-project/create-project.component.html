@@ -1,45 +1,66 @@
 <main id="main">
 
-    <h4 style="font-size: 1rem;font-weight: bold;">Create Project</h4>
+    <h4 style="font-size: 1rem;font-weight: bold;">{{crud}} Project</h4>
 
-    <form class="create-form">
+    <form class="create-form" [formGroup]="projectCreation">
         <div class="mb-3">
             <label for="division" class="form-label">Division</label>
-            <input type="text" class="form-control" id="division">
+            <input type="text" class="form-control" id="division" formControlName="division">
         </div>
 
         <div class="mb-3">
             <label for="" class="form-label">Name of the Work</label>
-            <input type="text" class="form-control" id="division">
+            <input type="text" class="form-control" id="nameOfTheWork" formControlName="nameOfTheWork">
         </div>
 
         <div class="mb-3">
             <label for="" class="form-label">Agreement Number</label>
-            <input type="text" class="form-control" id="division">
+            <input type="text" class="form-control" id="agreeMentNo" formControlName="agreeMentNo">
         </div>
 
         <div class="mb-3">
             <label for="" class="form-label">Agreement Value</label>
-            <input type="text" class="form-control" id="division">
+            <input type="text" class="form-control" id="agreeMentValue" formControlName="agreeMentValue">
         </div>
 
         <div class="mb-3">
             <label for="" class="form-label">Agreement Date</label>
-            <input type="date" class="form-control" id="division">
+            <input type="date" class="form-control" id="agreeMentDate" formControlName="agreeMentDate">
         </div>
-
+        <div class="mb-3">
+            <label for="" class="form-label">Invoice Number</label>
+            <input type="text" class="form-control" id="inVoice" formControlName="inVoice">
+        </div>
         <div class="mb-3">
             <label for="" class="form-label">Date of Commencement</label>
-            <input type="date" class="form-control" id="division">
+            <input type="date" class="form-control" id="dateOfCommencement" formControlName="dateOfCommencement">
         </div>
 
         <div class="mb-3">
             <label for="" class="form-label">Date of Completion</label>
-            <input type="date" class="form-control" id="division">
+            <input type="date" class="form-control" id="dateOfCompletion" formControlName="dateOfCompletion">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Name of the Bank</label>
+            <input type="text" class="form-control" id="bankName" formControlName="bankName">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Account Number</label>
+            <input type="text" class="form-control" id="bankAccNo" formControlName="bankAccNo">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">IFSC code</label>
+            <input type="text" class="form-control" id="bankIfscCode" formControlName="bankIfscCode">
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Name of the Branch</label>
+            <input type="text" class="form-control" id="branchName" formControlName="branchName">
         </div>
     </form>
 
     <div>
-        <button type="submit" class="btn create-button">Create Project</button>
+        <button type="submit" class="btn create-button" *ngIf="!view" (click)="createProject()">{{crud}} Project</button>&nbsp;
+        <button type="submit" class="btn create-button"  (click)="back()"> Back</button>
+
     </div>
 </main>

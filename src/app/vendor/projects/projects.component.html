@@ -12,33 +12,32 @@
 
                 <ng-container matColumnDef="sno">
                     <th mat-header-cell *matHeaderCellDef> S. No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                    <td mat-cell *matCellDef="let element;let i = index"> {{i + 1}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="projectName">
                     <th mat-header-cell *matHeaderCellDef> Project Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.nameOfTheWork}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="projectValue">
                     <th mat-header-cell *matHeaderCellDef> Project Value </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectValue}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.agreeMentValue}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="projectLocation">
                     <th mat-header-cell *matHeaderCellDef> Project Location </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectLocation}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.division}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-                            <path
-                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-                        </svg>
+                        <a [routerLink]="['/vendor/editproject', element.projectId]"> <mat-icon
+                                style="font-size: 18px;cursor:pointer" matTooltip="Edit">edit</mat-icon></a>
+                        <a [routerLink]="['/vendor/viewproject', element.projectId]"> <mat-icon
+                                style="font-size: 18px;cursor:pointer" matTooltip="View">visibility</mat-icon></a>
+
                     </td>
                 </ng-container>
 
