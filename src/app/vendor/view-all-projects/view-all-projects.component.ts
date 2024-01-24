@@ -12,11 +12,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  selector: 'app-view-all-projects',
+  templateUrl: './view-all-projects.component.html',
+  styleUrl: './view-all-projects.component.css'
 })
-export class ProjectsComponent {
-  displayedColumns: string[] = ['sno', 'projectName', 'projectValue', 'projectLocation', 'action'];
+export class ViewAllProjectsComponent {
+  displayedColumns: string[] = ['sno', 'projectName', 'projectValue', 'projectLocation', 'projectStatus', 'createBill', 'action'];
   dataSource = ELEMENT_DATA;
 }

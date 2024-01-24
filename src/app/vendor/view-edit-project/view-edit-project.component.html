@@ -2,12 +2,10 @@
 
     <h4 style="font-size: 1rem;font-weight: bold;">Create Project</h4>
 
-    <form [formGroup]="createForm" class="shadow create-form">
+    <form [formGroup]="projectForm" class="shadow create-form">
         <div class="mb-3">
             <label for="division" class="form-label">Division</label>
-            <select class="form-select" id="division" formControlName="division">
-                <option *ngFor="let division of divisions" [value]="division">{{ division }}</option>
-            </select>
+            <input type="text" class="form-control" id="division" formControlName="division">
         </div>
 
         <div class="mb-3">

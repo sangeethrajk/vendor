@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RaiseBillComponent } from './raise-bill/raise-bill.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { ViewAllProjectsComponent } from './view-all-projects/view-all-projects.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { BillsComponent } from './bills/bills.component';
 
@@ -16,7 +16,7 @@ const routes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'bills', component: BillsComponent },
             { path: 'raise-bill', component: RaiseBillComponent },
-            { path: 'projects', component: ProjectsComponent },
+            { path: 'view-all-projects', component: ViewAllProjectsComponent },
             { path: 'create-project', component: CreateProjectComponent },
         ],
     },

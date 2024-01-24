@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-raise-bill',
@@ -10,10 +11,28 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class RaiseBillComponent {
 
-  constructor(
+  billForm: FormGroup;
+
+  constructor(private fb: FormBuilder,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
-  ) { }
+  ) {
+    this.billForm = this.fb.group({
+      division: ['', Validators.required],
+      workName: ['', Validators.required],
+      agreementNo: ['', Validators.required],
+      agreementDate: ['', Validators.required],
+      dateOfCommencement: ['', Validators.required],
+      agreementValue: ['', Validators.required],
+      invoiceNo: ['', Validators.required],
+      billNo: ['', Validators.required],
+      billAmount: [null, Validators.required],
+      billGSTPercent: [null, [Validators.required, Validators.pattern(/^\d{0,2}$/)]],
+      billGSTAmount: ['', Validators.required],
+      billTotal: ['', Validators.required],
+      billUpload: ['']
+    });
+  }
 
   // updateTitle() {
   //   this.titleService.setTitle('Raise Bill');
@@ -21,6 +40,17 @@ export class RaiseBillComponent {
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  calculateTotalAmount() {
+    const billAmount = parseFloat(this.billForm.get('billAmount')?.value);
+    const gstPercent = parseFloat(this.billForm.get('billGSTPercent')?.value);
+
+    const gstAmount = (billAmount * gstPercent) / 100;
+    const totalAmount = billAmount + gstAmount;
+
+    this.billForm.get('billGSTAmount')?.setValue(gstAmount);
+    this.billForm.get('billTotal')?.setValue(totalAmount);
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

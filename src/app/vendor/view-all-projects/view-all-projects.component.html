@@ -25,20 +25,31 @@
                     <td mat-cell *matCellDef="let element"> {{element.projectValue}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="projectStatus">
+                    <th mat-header-cell *matHeaderCellDef> Project Status </th>
+                    <td mat-cell *matCellDef="let element"></td>
+                </ng-container>
+
                 <ng-container matColumnDef="projectLocation">
                     <th mat-header-cell *matHeaderCellDef> Project Location </th>
                     <td mat-cell *matCellDef="let element"> {{element.projectLocation}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="createBill">
+                    <th mat-header-cell *matHeaderCellDef> Create Bill </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button routerLink="/vendor/raise-bill">
+                            <mat-icon>note_add</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
                     <td mat-cell *matCellDef="let element">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-                            <path
-                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-                        </svg>
+                        <button mat-icon-button>
+                            <mat-icon>remove_red_eye</mat-icon>
+                        </button>
                     </td>
                 </ng-container>
 

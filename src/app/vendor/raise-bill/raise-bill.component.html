@@ -1,67 +1,77 @@
 <main id="main">
     <h3 style="font-weight: bold;font-size: large;">Raise Bill</h3>
-    <form>
-        <div class="row mb-3">
-            <label for="divisionDropdown" class="col-3 col-form-label">Name of the Division</label>
-            <div class="col-9">
-                <select class="form-select" id="divisionDropdown" aria-label="Default select example">
-                    <option selected>Select Division</option>
-                    <option value="1">KK Nagar</option>
-                    <option value="2">Anna Nagar</option>
-                    <option value="3">JJ Nagar</option>
-                </select>
+    <section class="main-section">
+        <form [formGroup]="billForm" id="billForm">
+            <div class="division">
+                <label for="division" class="form-label">Name of the Division</label>
+                <input type="text" class="form-control" id="division" formControlName="division">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="workName" class="col-3 col-form-label">Name of the Work</label>
-            <div class="col-9">
-                <input type="text" class="form-control" id="workName">
+
+            <div>
+                <label for="workName" class="form-label">Name of the Work</label>
+                <input type="text" class="form-control" id="workName" formControlName="workName">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label class="col-3 col-form-label">Agreement Number & Date</label>
-            <div class="col-9">
-                <div class="d-flex">
-                    <input type="text" class="form-control" id="agreementNo">
-                    <input type="date" class="form-control ms-2" id="agreementDate">
-                </div>
+
+            <div>
+                <label class="form-label">Agreement Number</label>
+                <input type="text" class="form-control" id="agreementNo" formControlName="agreementNo">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="dateOfCommencement" class="col-3 col-form-label">Date of Commencement</label>
-            <div class="col-9">
-                <input type="date" class="form-control" id="dateOfCommencement">
+
+            <div>
+                <label class="form-label">Agreement Date</label>
+                <input type="date" class="form-control" id="agreementDate" formControlName="agreementDate">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="agreementValue" class="col-3 col-form-label">Agreement value</label>
-            <div class="col-9">
-                <input type="text" class="form-control" id="agreementValue">
+
+            <div>
+                <label for="dateOfCommencement" class="form-label">Date of Commencement</label>
+                <input type="date" class="form-control" id="dateOfCommencement" formControlName="dateOfCommencement">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="invoiceNo" class="col-3 col-form-label">Invoice Number</label>
-            <div class="col-9">
-                <input type="text" class="form-control" id="invoiceNo">
+
+            <div>
+                <label for="agreementValue" class="form-label">Agreement value</label>
+                <input type="text" class="form-control" id="agreementValue" formControlName="agreementValue">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="billNo" class="col-3 col-form-label">Bill Number</label>
-            <div class="col-9">
-                <input type="text" class="form-control" id="billNo">
+
+            <div>
+                <label for="invoiceNo" class="form-label">Invoice Number</label>
+                <input type="text" class="form-control" id="invoiceNo" formControlName="invoiceNo">
             </div>
-        </div>
-        <div class="row mb-3">
-            <label class="col-3 col-form-label">Bill Value</label>
-            <div class="col-9">
-                <div class="d-flex">
-                    <input type="text" class="form-control" id="billValue">
-                    <input type="file" class="form-control ms-2" id="billUpload">
-                </div>
+
+            <div>
+                <label for="billNo" class="form-label">Bill Number</label>
+                <input type="text" class="form-control" id="billNo" formControlName="billNo">
             </div>
+
+            <div>
+                <label class="form-label">Bill Amount</label>
+                <input type="text" class="form-control" id="billAmount" formControlName="billAmount">
+            </div>
+
+            <div>
+                <label class="form-label">Bill GST Percentage</label>
+                <input type="text" class="form-control" formControlName="billGSTPercent" maxlength="2"
+                    (keyup)="calculateTotalAmount()">
+            </div>
+
+            <div>
+                <label class="form-label">Bill GST Amount</label>
+                <input type="text" class="form-control" formControlName="billGSTAmount" readonly>
+            </div>
+
+            <div>
+                <label class="form-label">Bill Total</label>
+                <input type="text" class="form-control" id="billTotal" formControlName="billTotal" readonly>
+            </div>
+
+            <div>
+                <label class="form-label">Upload Invoice</label>
+                <input type="file" class="form-control" id="billUpload" formControlName="billUpload">
+            </div>
+
+        </form>
+        <div class="">
+            <button type="submit" [disabled]="billForm.invalid" class="btn btn-primary"
+                (click)="openDialog()">Submit</button>
         </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary" (click)="openDialog()">Submit</button>
-        </div>
-    </form>
+    </section>
 </main>

@@ -17,6 +17,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './bills.component.css'
 })
 export class BillsComponent {
-  displayedColumns: string[] = ['sno', 'projectName', 'projectValue', 'projectLocation', 'action'];
+  displayedColumns: string[] = ['sno', 'projectName', 'projectValue', 'projectLocation', 'billStatus'];
   dataSource = ELEMENT_DATA;
 }
