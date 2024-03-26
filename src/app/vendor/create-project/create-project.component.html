@@ -5,39 +5,45 @@
     <form [formGroup]="createForm" class="shadow create-form">
         <div class="mb-3">
             <label for="division" class="form-label">Division</label>
-            <select class="form-select" id="division" formControlName="division">
+            <select class="form-select" id="division" formControlName="division" (change)="onDivisionChange()">
                 <option *ngFor="let division of divisions" [value]="division">{{ division }}</option>
             </select>
         </div>
 
         <div class="mb-3">
             <label for="workName" class="form-label">Name of the Work</label>
-            <input type="text" class="form-control" id="workName" formControlName="workName">
+            <select class="form-select" id="workName" formControlName="nameOfTheWork">
+                <option *ngFor="let nameOfTheWork of workList" [value]="nameOfTheWork">{{ nameOfTheWork }}</option>
+            </select>
         </div>
 
         <div class="mb-3">
             <label for="agreementNumber" class="form-label">Agreement Number</label>
-            <input type="text" class="form-control" id="agreementNumber" formControlName="agreementNumber">
+            <select class="form-select" id="agreementNumber" formControlName="agreementNumber"
+                (change)="onAgreementNoChange()">
+                <option *ngFor="let agreementNumber of agreementNumberList" [value]="agreementNumber">{{ agreementNumber
+                    }}</option>
+            </select>
         </div>
 
         <div class="mb-3">
             <label for="agreementValue" class="form-label">Agreement Value (incl. GST)</label>
-            <input type="text" class="form-control" id="agreementValue" formControlName="agreementValue">
+            <input type="text" class="form-control" id="agreementValue" formControlName="agreementValue" readonly>
         </div>
 
         <div class="mb-3">
             <label for="agreementDate" class="form-label">Agreement Date</label>
-            <input type="date" class="form-control" id="agreementDate" formControlName="agreementDate">
+            <input type="date" class="form-control" id="agreementDate" formControlName="agreementDate" readonly>
         </div>
 
         <div class="mb-3">
             <label for="dateOfCommencement" class="form-label">Date of Commencement</label>
-            <input type="date" class="form-control" id="dateOfCommencement" formControlName="dateOfCommencement">
+            <input type="date" class="form-control" id="dateOfCommencement" formControlName="commencementDate" readonly>
         </div>
 
         <div class="mb-3">
             <label for="dateOfCompletion" class="form-label">Date of Completion</label>
-            <input type="date" class="form-control" id="dateOfCompletion" formControlName="dateOfCompletion">
+            <input type="date" class="form-control" id="dateOfCompletion" formControlName="completionDate" readonly>
         </div>
 
         <div class="mb-3">
@@ -67,6 +73,6 @@
     </form>
 
     <div>
-        <button type="submit" class="btn create-button">Create Project</button>
+        <button type="submit" class="btn create-button" (click)="onSubmit()">Create Project</button>
     </div>
 </main>

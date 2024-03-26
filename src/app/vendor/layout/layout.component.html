@@ -5,7 +5,7 @@
             <img src="../../../assets/images/tnhb_logo.png" alt="TNHB Logo" style="height: 3rem;">
         </div>
         <div style="display: flex;align-items: center;">
-            <h4 style="color: black;">Appaswamy Builders</h4>
+            <h4 style="color: black;">{{username}}</h4>
             <img src="../../../assets/images/person.png" alt="" style="height: 1.5rem;margin-left: 1rem;">
         </div>
     </mat-toolbar>
@@ -17,6 +17,7 @@
                 <button routerLink="/vendor/home" class="btn mb-2 home-btn">Home</button>
                 <button routerLink="/vendor/view-all-projects" class="btn mb-2 project-btn">Projects</button>
                 <button routerLink="/vendor/bills" class="btn mb-2 bill-btn">Bills</button>
+                <button (click)="logout()" class="btn mb-2 bill-btn">Logout</button>
             </div>
         </mat-sidenav>
 

@@ -4,31 +4,31 @@
         <h3 style="font-weight: bold;font-size: large;">List of Bills</h3>
 
         <div>
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 matTable">
 
                 <ng-container matColumnDef="sno">
                     <th mat-header-cell *matHeaderCellDef> S. No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+                    <td mat-cell *matCellDef="let element; let i=index"> {{i+1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="projectName">
-                    <th mat-header-cell *matHeaderCellDef> Project Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
+                <ng-container matColumnDef="invoiceNumber">
+                    <th mat-header-cell *matHeaderCellDef> Invoice Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="projectValue">
-                    <th mat-header-cell *matHeaderCellDef> Project Value </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectValue}} </td>
+                <ng-container matColumnDef="billNumber">
+                    <th mat-header-cell *matHeaderCellDef> Bill Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.billNumber}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="projectLocation">
-                    <th mat-header-cell *matHeaderCellDef> Project Location </th>
-                    <td mat-cell *matCellDef="let element"> {{element.projectLocation}} </td>
+                <ng-container matColumnDef="billTotal">
+                    <th mat-header-cell *matHeaderCellDef> Bill Total </th>
+                    <td mat-cell *matCellDef="let element"> {{element.billTotal}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="billStatus">
                     <th mat-header-cell *matHeaderCellDef> Bill Status </th>
-                    <td mat-cell *matCellDef="let element"></td>
+                    <td mat-cell *matCellDef="let element">{{element.billStatus}}</td>
                 </ng-container>
 
                 <!-- <ng-container matColumnDef="action">

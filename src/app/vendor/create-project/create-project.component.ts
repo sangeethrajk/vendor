@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VendorService } from '../../services/vendor.service';
 
 @Component({
   selector: 'app-create-project',
@@ -10,6 +11,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateProjectComponent {
 
   createForm: FormGroup;
+  allWorkData: any[] = [];
+  workList: any[] = [];
+  agreementNumberList: any[] = [];
+  username: any;
+  vendorId: any;
 
   divisions = [
     "Anna Nagar",
@@ -39,21 +45,104 @@ export class CreateProjectComponent {
     "Villupuram Housing Unit"
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private vendorService: VendorService
+  ) {
     this.createForm = this.fb.group({
       division: ['', Validators.required],
-      workName: ['', Validators.required],
+      nameOfTheWork: ['', Validators.required],
       agreementNumber: ['', Validators.required],
       agreementValue: ['', Validators.required],
       agreementDate: ['', Validators.required],
-      dateOfCommencement: ['', Validators.required],
-      dateOfCompletion: ['', Validators.required],
+      commencementDate: ['', Validators.required],
+      completionDate: ['', Validators.required],
       bankName: ['', Validators.required],
       accountNumber: ['', Validators.required],
       accountHolderName: ['', Validators.required],
       ifscCode: ['', Validators.required],
       branchName: ['', Validators.required],
+      workId: [''],
+      projectStatus: ['']
     });
+  }
+
+  ngOnInit() {
+    this.username = sessionStorage.getItem('username');
+    this.getVendorId();
+  }
+
+  getVendorId() {
+    this.vendorService.getVendorIdByUsername(this.username).subscribe(
+      (response: any) => {
+        this.vendorId = response.data;
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
+  onDivisionChange() {
+    this.workList = [];
+    const division = this.createForm.get('division')?.value;
+    this.vendorService.getAllWorks(division).subscribe(
+      (response: any) => {
+        this.allWorkData = response;
+        response.forEach((work: any) => {
+          this.workList.push(work.nameOfTheWork);
+          this.agreementNumberList.push(work.agreementNumber);
+        });
+        console.log(this.workList);
+      },
+      (error: any) => {
+        console.error('Error in fetching  all works : ', error);
+      }
+    );
+  }
+
+  onAgreementNoChange() {
+    const selectedAgreementNumber = this.createForm.get('agreementNumber')?.value;
+    const selectedWork = this.allWorkData.find((work: any) => work.agreementNumber === selectedAgreementNumber);
+    if (selectedWork) {
+      console.log(selectedWork);
+      this.createForm.patchValue({
+        agreementValue: selectedWork.agreementValue,
+        agreementDate: selectedWork.agreementDate,
+        commencementDate: selectedWork.commencementDate,
+        completionDate: selectedWork.completionDate,
+        workId: selectedWork.id
+      });
+    }
+  }
+
+  onSubmit() {
+    if (this.createForm.valid) {
+      const vendorId: string = this.vendorId.toString();
+      const workId: string = this.createForm.get('workId')?.value.toString();
+      const data = {
+        division: this.createForm.get('division')?.value,
+        workId: workId,
+        vendorId: vendorId,
+        bankName: this.createForm.get('bankName')?.value,
+        accountNumber: this.createForm.get('accountNumber')?.value,
+        accountHolderName: this.createForm.get('accountHolderName')?.value,
+        ifscCode: this.createForm.get('ifscCode')?.value,
+        branchName: this.createForm.get('branchName')?.value,
+        projectStatus: "Pending"
+      };
+      console.log(data);
+      this.vendorService.createVendorProject(data).subscribe(
+        (response: any) => {
+          console.log(response);
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
+    } else {
+      window.alert('Please fill all the fields');
+    }
   }
 
 }

@@ -4,42 +4,48 @@
         <form [formGroup]="billForm" id="billForm">
             <div class="division">
                 <label for="division" class="form-label">Name of the Division</label>
-                <input type="text" class="form-control" id="division" formControlName="division">
+                <input type="text" class="form-control" id="division" formControlName="division" readonly>
             </div>
 
             <div>
                 <label for="workName" class="form-label">Name of the Work</label>
-                <input type="text" class="form-control" id="workName" formControlName="workName">
+                <input type="text" class="form-control" id="workName" formControlName="nameOfTheWork" readonly>
             </div>
 
             <div>
                 <label class="form-label">Agreement Number</label>
-                <input type="text" class="form-control" id="agreementNo" formControlName="agreementNo">
+                <input type="text" class="form-control" id="agreementNo" formControlName="agreementNumber" readonly>
             </div>
 
             <div>
                 <label class="form-label">Agreement Date</label>
-                <input type="date" class="form-control" id="agreementDate" formControlName="agreementDate">
+                <input type="date" class="form-control" id="agreementDate" formControlName="agreementDate" readonly>
             </div>
 
             <div>
                 <label for="dateOfCommencement" class="form-label">Date of Commencement</label>
-                <input type="date" class="form-control" id="dateOfCommencement" formControlName="dateOfCommencement">
+                <input type="date" class="form-control" id="dateOfCommencement" formControlName="commencementDate"
+                    readonly>
+            </div>
+
+            <div>
+                <label for="completionDate" class="form-label">Date of Completion</label>
+                <input type="date" class="form-control" id="completionDate" formControlName="completionDate" readonly>
             </div>
 
             <div>
                 <label for="agreementValue" class="form-label">Agreement value</label>
-                <input type="text" class="form-control" id="agreementValue" formControlName="agreementValue">
+                <input type="text" class="form-control" id="agreementValue" formControlName="agreementValue" readonly>
             </div>
 
             <div>
                 <label for="invoiceNo" class="form-label">Invoice Number</label>
-                <input type="text" class="form-control" id="invoiceNo" formControlName="invoiceNo">
+                <input type="text" class="form-control" id="invoiceNo" formControlName="invoiceNumber">
             </div>
 
             <div>
                 <label for="billNo" class="form-label">Bill Number</label>
-                <input type="text" class="form-control" id="billNo" formControlName="billNo">
+                <input type="text" class="form-control" id="billNo" formControlName="billNumber">
             </div>
 
             <div>
@@ -49,7 +55,7 @@
 
             <div>
                 <label class="form-label">Bill GST Percentage</label>
-                <input type="text" class="form-control" formControlName="billGSTPercent" maxlength="2"
+                <input type="text" class="form-control" formControlName="billGSTPercentage" maxlength="2"
                     (keyup)="calculateTotalAmount()">
             </div>
 
@@ -65,13 +71,20 @@
 
             <div>
                 <label class="form-label">Upload Invoice</label>
-                <input type="file" class="form-control" id="billUpload" formControlName="billUpload">
+                <input type="file" class="form-control" id="billUpload" (change)="onInvoiceFileSelected($event)"
+                    accept=".pdf">
+            </div>
+
+            <div>
+                <label class="form-label">GST Invoice Challan</label>
+                <input type="file" class="form-control" id="gstInvoice" (change)="onGstChallanFileSelected($event)"
+                    accept=".pdf">
             </div>
 
         </form>
         <div class="">
             <button type="submit" [disabled]="billForm.invalid" class="btn btn-primary"
-                (click)="openDialog()">Submit</button>
+                (click)="createBill()">Submit</button>
         </div>
     </section>
 </main>
