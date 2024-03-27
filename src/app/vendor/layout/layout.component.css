@@ -65,9 +65,18 @@ mat-sidenav-content {
     font-weight: 500;
 }
 
+.logout-btn {
+    width: 100%;
+    text-align: start;
+    background-color: #673F69;
+    color: #ffffff;
+    font-weight: 500;
+}
+
 .home-btn:hover,
 .project-btn:hover,
-.bill-btn:hover {
+.bill-btn:hover,
+.logout-btn:hover {
     background-color: #D2DE32;
     color: #2B3499;
 }

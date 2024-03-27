@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { VendorService } from '../../services/vendor.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-raise-bill',
@@ -24,7 +25,9 @@ export class RaiseBillComponent {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private vendorService: VendorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private toastService: ToastService
   ) {
     this.billForm = this.fb.group({
       division: ['', Validators.required],
@@ -128,10 +131,10 @@ export class RaiseBillComponent {
             this.vendorService.createBill(data).subscribe(
               (response: any) => {
                 console.log(response);
-                this._snackBar.open('Bill Submitted Successfully!', 'Ok', {
-                  horizontalPosition: 'end',
-                  verticalPosition: 'top',
-                });
+                this.toastService.showToast('success', 'Bill Submitted Successfully', '');
+                setTimeout(() => {
+                  this.router.navigate(['/vendor/view-all-projects']);
+                }, 3000);
               },
               (error: any) => {
                 console.error('Error creating bill:', error);
@@ -139,6 +142,7 @@ export class RaiseBillComponent {
                   horizontalPosition: 'end',
                   verticalPosition: 'top',
                 });
+                this.toastService.showToast('error', 'Error while submitting bill', '');
               }
             );
           });

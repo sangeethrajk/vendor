@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VendorService } from '../../services/vendor.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-create-project',
@@ -47,7 +48,8 @@ export class CreateProjectComponent {
 
   constructor(
     private fb: FormBuilder,
-    private vendorService: VendorService
+    private vendorService: VendorService,
+    private toastService: ToastService,
   ) {
     this.createForm = this.fb.group({
       division: ['', Validators.required],
@@ -137,11 +139,15 @@ export class CreateProjectComponent {
           console.log(response);
         },
         (error: any) => {
-          console.error(error);
+          console.error(error.error.message);
+          if (error.error.message === "Error: A project with the same workId and vendorId already exists") {
+            this.toastService.showToast('error', 'You have already created this Project', '');
+          }
         }
       );
     } else {
       window.alert('Please fill all the fields');
+      this.toastService.showToast('warning', 'Please fill all the fields', '');
     }
   }
 

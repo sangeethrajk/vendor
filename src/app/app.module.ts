@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig =
 {
@@ -60,6 +61,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig =
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule,
+    ToastrModule.forRoot()
   ],
   providers: [Title],
   bootstrap: [AppComponent]

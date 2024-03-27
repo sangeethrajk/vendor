@@ -23,7 +23,7 @@ export class BillsComponent implements OnInit {
   username: any;
   vendorId: any;
 
-  displayedColumns: string[] = ['sno', 'invoiceNumber', 'billNumber', 'billTotal', 'billStatus'];
+  displayedColumns: string[] = ['sno', 'invoiceNumber', 'billNumber', 'billTotal', 'billStatus', 'lcpdf'];
   dataSource = new MatTableDataSource<any>();
 
   constructor(private vendorService: VendorService) { }
@@ -51,4 +51,15 @@ export class BillsComponent implements OnInit {
       }
     );
   }
+
+  openPdfInNewTab(lcFormatFileName: string | null) {
+    if (lcFormatFileName) {
+      // Construct the URL of the PDF file
+      const pdfUrl = `file:///c:/${lcFormatFileName}`;
+
+      // Open the PDF in a new tab
+      window.open(pdfUrl, '_blank');
+    }
+  }
+
 }
